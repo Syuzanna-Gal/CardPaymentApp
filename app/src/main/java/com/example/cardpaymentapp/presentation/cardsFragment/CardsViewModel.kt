@@ -1,4 +1,7 @@
 package com.example.cardpaymentapp.presentation.cardsFragment
 
-class CardsViewModel {
+import androidx.lifecycle.ViewModel
+
+class CardsViewModel : ViewModel() {
+    //TODO
 }
