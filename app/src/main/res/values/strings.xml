@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CardPaymentApp</string>
+    <string name="payment_amount">Payment amount</string>
+    <string name="cards">Cards</string>
+    <string name="pay">Pay</string>
+    <string name="balance">Balance</string>
+    <string name="valid_until">Valid until</string>
+</resources>
