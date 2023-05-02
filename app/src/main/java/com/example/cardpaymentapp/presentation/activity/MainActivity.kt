@@ -1,4 +1,4 @@
-package com.example.cardpaymentapp.presentation.mainActivity
+package com.example.cardpaymentapp.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

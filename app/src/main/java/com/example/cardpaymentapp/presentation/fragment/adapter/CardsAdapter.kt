@@ -1,4 +1,4 @@
-package com.example.cardpaymentapp.presentation.cardsFragment.adapter
+package com.example.cardpaymentapp.presentation.fragment.adapter
 
 import android.view.View
 import com.example.cardpaymentapp.R

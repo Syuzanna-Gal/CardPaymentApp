@@ -1,4 +1,4 @@
-package com.example.cardpaymentapp.presentation.cardsFragment
+package com.example.cardpaymentapp.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cardpaymentapp.R
 import com.example.cardpaymentapp.databinding.FragmentCardsBinding
-import com.example.cardpaymentapp.presentation.cardsFragment.adapter.CardsAdapter
+import com.example.cardpaymentapp.presentation.fragment.adapter.CardsAdapter
 import com.example.cardpaymentapp.presentation.utils.extensions.collectWhenStarted
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

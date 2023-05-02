@@ -1,4 +1,4 @@
-package com.example.cardpaymentapp.presentation.cardsFragment
+package com.example.cardpaymentapp.presentation.fragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,11 +12,13 @@ class CardsViewModel(private val getCardsUseCase: GetCardsUseCase) : ViewModel()
     private val _cardsList = MutableStateFlow<List<CardModel>?>(null)
     val cardsList = _cardsList.asStateFlow()
 
-    fun getCards() = getCardsUseCase.getCards()
+    fun getCards() = getCardsUseCase()
         .flowOn(Dispatchers.IO)
         .onEach {
             _cardsList.value = it
         }
-        .catch {}
+        .catch {
+            // TODO: error
+        }
         .launchIn(viewModelScope)
 }
