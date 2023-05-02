@@ -6,5 +6,6 @@ import com.example.cardpaymentapp.entity.PayCardResponse
 import kotlinx.coroutines.flow.Flow
 
 class PayWithCardUseCase(private val repository: AppRepository) {
-    operator fun invoke(card: CardModel): Flow<PayCardResponse> = repository.payWithCard(card)
+    operator fun invoke(card: CardModel, paymentAmount: Int): Flow<PayCardResponse> =
+        repository.payWithCard(card.id, paymentAmount)
 }

@@ -1,37 +1,39 @@
 package com.example.cardpaymentapp.presentation.fragment.adapter
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cardpaymentapp.R
 import com.example.cardpaymentapp.databinding.ItemCardBinding
 import com.example.cardpaymentapp.entity.CardModel
 import com.example.cardpaymentapp.entity.enums.CardType
-import me.ibrahimyilmaz.kiel.adapterOf
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 
-class CardsAdapter(
+class CardsAdapter(private var cardList: List<CardModel>) :
+    RecyclerView.Adapter<CardsAdapter.CardViewHolder>() {
 
-) {
-    val adapter = adapterOf<CardModel> {
-        diff(
-            areItemsTheSame = { old, new ->
-                old.id == new.id
-            },
-            areContentsTheSame = { old, new ->
-                old == new
-            }
-        )
-        register(
-            layoutResource = R.layout.item_card,
-            viewHolder = {
-                CardViewHolder(it)
-            },
-            onBindViewHolder = { vh, _, p -> vh.onBind(p) }
-        )
+    fun submitList(cardList: List<CardModel>) {
+        this.cardList = cardList
+        this.notifyItemRangeChanged(0, cardList.size)
+    }
+
+    fun getItem(index: Int): CardModel? = this.cardList.getOrNull(index)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_card, parent, false)
+        return CardViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = cardList.size
+
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        holder.onBind(cardList[holder.adapterPosition])
     }
 
     class CardViewHolder(
         view: View,
-    ) : RecyclerViewHolder<CardModel>(view) {
+    ) : RecyclerView.ViewHolder(view) {
 
         private val binding = ItemCardBinding.bind(view)
 

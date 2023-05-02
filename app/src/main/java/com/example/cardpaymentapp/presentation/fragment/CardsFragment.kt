@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.cardpaymentapp.R
 import com.example.cardpaymentapp.databinding.FragmentCardsBinding
@@ -18,7 +20,7 @@ class CardsFragment() : Fragment(R.layout.fragment_cards) {
     }
     private val viewModel: CardsViewModel by viewModel()
     private val cardsAdapter by lazy {
-        CardsAdapter()
+        CardsAdapter(listOf())
     }
 
     override fun onCreateView(
@@ -32,17 +34,33 @@ class CardsFragment() : Fragment(R.layout.fragment_cards) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
-        viewModel.getCards()
         with(binding) {
-            rvCards.adapter = cardsAdapter.adapter
+            vpCards.adapter = cardsAdapter
+
+            btnPay.setOnClickListener {
+                cardsAdapter.getItem(vpCards.currentItem)?.let {
+                    viewModel.payWithCard(it, etPaymentAmount.text.toString().toInt())
+                }
+            }
+
+            etPaymentAmount.doOnTextChanged { text, _, _, _ ->
+                btnPay.isEnabled = !text.isNullOrEmpty()
+            }
         }
     }
 
     private fun initObservers() {
         collectWhenStarted(viewModel.cardsList) { cardsList ->
-            cardsList?.let {
-                cardsAdapter.adapter.submitList(it)
-            }
+            cardsAdapter.submitList(cardsList)
+        }
+
+        collectWhenStarted(viewModel.showError) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+        collectWhenStarted(viewModel.showSuccess) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            binding.etPaymentAmount.setText("")
         }
     }
 }

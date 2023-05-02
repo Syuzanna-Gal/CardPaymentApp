@@ -5,7 +5,7 @@ import com.example.cardpaymentapp.entity.PayCardResponse
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
-    fun getCards(): Flow<List<CardModel>>
+    fun getCards() :List<CardModel>
 
-    fun payWithCard(card: CardModel): Flow<PayCardResponse>
+    fun payWithCard(cardId: Int, paymentAmount: Int): Flow<PayCardResponse>
 }

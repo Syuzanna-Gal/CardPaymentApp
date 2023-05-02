@@ -49,15 +49,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
-    // 3-th party library for adapter of Recycler
-    implementation "io.github.ibrahimyilmaz:kiel:1.2.1"
-
     // DI (service locator)
     implementation "io.insert-koin:koin-core:3.4.0"
     implementation "io.insert-koin:koin-android:3.4.0"
-
-    // Image loading
-    implementation "io.coil-kt:coil:2.3.0"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'
