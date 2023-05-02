@@ -1,14 +1,14 @@
 package com.example.cardpaymentapp.domain.usecases
 
-import com.example.cardpaymentapp.domain.interactors.PayWithCardInteractor
+import com.example.cardpaymentapp.data.AppRepo
 import com.example.cardpaymentapp.entity.CardModel
 import com.example.cardpaymentapp.entity.PayCardResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.util.Calendar
+import java.util.*
 
-class PayWithCardUseCase : PayWithCardInteractor {
-    override fun payWithCard(card: CardModel): Flow<PayCardResponse> {
+class PayWithCardUseCase(val appRepo: AppRepo) {
+    fun payWithCard(card: CardModel): Flow<PayCardResponse> {
         //TODO call to Repo if there is any API
         //Now we do imitation of call
         //card balance

@@ -7,6 +7,6 @@ data class CardModel(
     val id: String = UUID.randomUUID().toString(),
     val name: String,
     val type: CardType,
-    val balance: Long,
+    val balance: Int,
     val validUntil: String
 )
